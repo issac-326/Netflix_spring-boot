@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hn.unah.proyecto.netflix.dto.UsuarioTarjeta;
+import hn.unah.proyecto.netflix.models.Plan;
 import hn.unah.proyecto.netflix.models.Tarjeta;
 import hn.unah.proyecto.netflix.models.Usuario;
+import hn.unah.proyecto.netflix.repositorys.PlanRepository;
 import hn.unah.proyecto.netflix.repositorys.TarjetaRepository;
 import hn.unah.proyecto.netflix.repositorys.UsuarioRepository;
 import hn.unah.proyecto.netflix.services.UsuarioService;
@@ -21,6 +23,9 @@ public class UsuarioImpl implements UsuarioService{
 
     @Autowired
     private TarjetaRepository tarjetaRepositorio;
+
+    @Autowired
+    private PlanRepository planRepositorio;
 
     @Override
     public Optional<Usuario> login(Usuario usuario) {
@@ -58,6 +63,7 @@ public class UsuarioImpl implements UsuarioService{
          Optional<Tarjeta> tarjetaVerificar = tarjetaRepositorio.findById(usuarioTarjeta.getNumeroTarjeta());
          //para verificar si el correo ya esta en uso
          Optional<Usuario> usuarioCorreo = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
+         Optional<Plan> plan = planRepositorio.findById(usuarioTarjeta.getIdPlan());
          Usuario usuario = new Usuario();
          Date fechaActual = new Date();
 
@@ -79,6 +85,7 @@ public class UsuarioImpl implements UsuarioService{
 
             //se le asigna la tarjeta al usuario
             //usuario.setTarjeta(tarjeta);
+            //usuario.setPLan(plan);
             usuarioRepositorio.save(usuario);
 
             Optional<Usuario> nuevoUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
