@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "fecharegistro")
     private Date fechaRegistro;
 }

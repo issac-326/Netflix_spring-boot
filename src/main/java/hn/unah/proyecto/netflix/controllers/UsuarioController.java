@@ -1,5 +1,7 @@
 package hn.unah.proyecto.netflix.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,7 @@ public class UsuarioController {
     private UsuarioImpl usuarioImplementacion;
 
     @GetMapping("/usuario")
-    public Usuario login(@RequestBody Usuario usuario){
+    public Optional<Usuario> login(@RequestBody Usuario usuario){
         return usuarioImplementacion.login(usuario);
     }
 
