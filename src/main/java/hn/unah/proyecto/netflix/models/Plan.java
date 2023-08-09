@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +33,8 @@ public class Plan {
 
     @Column(name = "cantidadperfiles")
     private int cantidadPerfiles;
+
+    @JsonIgnore
+    @OneToOne(mappedBy ="plan")
+    private Usuario usuario;
 }

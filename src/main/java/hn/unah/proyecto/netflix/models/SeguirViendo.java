@@ -1,5 +1,8 @@
 package hn.unah.proyecto.netflix.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,24 +22,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "perfiles")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Perfil {
-    
+public class SeguirViendo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idperfil")
-    private int idPerfil;
+    @Column(name = "idseguirviendo")
+    private int idSeguir;
 
-    private String nombre;
-    private  String imagen;
-    private boolean estado;
-    
-     @JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+     @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idusuario", referencedColumnName="idusuario")
-	private Usuario usuarioP;
-
+	private Usuario usuario;
+    
+  
 }

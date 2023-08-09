@@ -1,15 +1,22 @@
 package hn.unah.proyecto.netflix.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,4 +42,30 @@ public class Usuario {
     @Temporal(TemporalType.DATE)
     @Column(name = "fecharegistro")
     private Date fechaRegistro;
+
+//relacion de usuario/facturas de 1:M
+    @OneToMany(mappedBy="usuarioF")
+	private List<Factura> facturas;
+
+    //relacion de usuario/perfiles de 1:M
+    @OneToMany(mappedBy="usuarioP")
+	private List<Perfil> perfiles;
+//  relacion de usuario/tarjeta 1:1
+    @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="numerotarjeta", referencedColumnName="numerotarjeta")
+	private Tarjeta tarjeta;
+
+    //relacion de usuario/plan
+    @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idplan", referencedColumnName="idplan")
+	private Plan plan;
+     //RELACION VER MAS TARDE
+    @JsonIgnore
+    @OneToOne(mappedBy ="usuario")
+    private VerMastarde verMastarde;
+    // relacion seguir viendo
+    @JsonIgnore
+    @OneToOne(mappedBy ="usuario")
+    private SeguirViendo seguirViendo;
 }
+

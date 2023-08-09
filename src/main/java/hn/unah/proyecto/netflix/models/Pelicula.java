@@ -2,10 +2,15 @@ package hn.unah.proyecto.netflix.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,4 +36,12 @@ public class Pelicula {
     private String duracion;
 
     private String imagen;
+
+    @JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idcategorias", referencedColumnName="idcategorias")
+	private Categoria categoria;
+
+  
+
 }
