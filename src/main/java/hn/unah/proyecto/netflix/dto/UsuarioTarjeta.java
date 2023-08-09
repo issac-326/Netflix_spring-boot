@@ -1,5 +1,7 @@
 package hn.unah.proyecto.netflix.dto;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,5 +18,6 @@ public class UsuarioTarjeta {
     private int idPlan;
     private int numeroTarjeta;
     private int cvv;
+    private Date fechaVencimiento;
     private String tipoTarjeta;
 }
