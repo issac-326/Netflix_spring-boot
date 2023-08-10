@@ -22,4 +22,9 @@ public class PerfilController {
     public List<Perfil> retornarPerfiles(@PathVariable int idUsuario){
         return perfilImplementacion.retornarPerfiles(idUsuario);
     }
+
+    @GetMapping("/cambiar/estado/{idPerfil}")
+    public Perfil cambiarEstado(@PathVariable int idPerfil){
+        return perfilImplementacion.cambiarEstado(idPerfil);
+    }
 }

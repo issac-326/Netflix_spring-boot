@@ -21,10 +21,21 @@ public class PerfilImpl implements PerfilService{
     @Autowired
     private PerfilRepository perfilRepositorio;
 
+    //al ingresar a un perfil cambia el estado a activo
     @Override
-    public Optional<Perfil> cambiarEstado(Perfil perfil) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cambiarEstado'");
+    public Perfil cambiarEstado(int idPerfil) {
+
+        Optional<Perfil> perfilBuscar = perfilRepositorio.findById(idPerfil);
+
+        Perfil perfil = perfilBuscar.get();
+
+        if(perfil.getEstado() == true){
+            perfil.setEstado(false);
+        }else{
+            perfil.setEstado(true);
+        }
+        perfilRepositorio.save(perfil);
+        return perfil;
     }
 
     @Override

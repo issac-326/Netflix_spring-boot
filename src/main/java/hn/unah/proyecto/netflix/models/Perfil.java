@@ -46,4 +46,9 @@ public class Perfil {
     @OneToOne(mappedBy = "perfil")
     private SeguirViendo seguirViendo;
 
+
+    public boolean getEstado() {
+        return estado;
+    }
+
 }
