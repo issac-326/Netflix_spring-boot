@@ -1,8 +1,6 @@
 package hn.unah.proyecto.netflix.services.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import hn.unah.proyecto.netflix.models.Plan;
 import hn.unah.proyecto.netflix.models.Tarjeta;
 import hn.unah.proyecto.netflix.models.Usuario;
 import hn.unah.proyecto.netflix.repositorys.FacturaRepository;
+import hn.unah.proyecto.netflix.repositorys.PerfilRepository;
 import hn.unah.proyecto.netflix.repositorys.PlanRepository;
 import hn.unah.proyecto.netflix.repositorys.TarjetaRepository;
 import hn.unah.proyecto.netflix.repositorys.UsuarioRepository;
@@ -34,6 +33,9 @@ public class UsuarioImpl implements UsuarioService{
 
     @Autowired
     private FacturaRepository facturaRepositorio;
+
+    @Autowired
+    private PerfilRepository perfilRepositorio;
 
     @Override
     public Optional<Usuario> login(Usuario usuario) {
@@ -75,7 +77,7 @@ public class UsuarioImpl implements UsuarioService{
          Usuario usuario = new Usuario();
          Date fechaActual = new Date();
          //crear el perfil predeterminado 
-         List<Perfil> listaPerfiles = new ArrayList<>();
+         //List<Perfil> listaPerfiles = new ArrayList<>();
          Perfil perfil = new Perfil();
          //factura crear
          Factura factura = new Factura();
@@ -84,9 +86,9 @@ public class UsuarioImpl implements UsuarioService{
          factura.setFechaEmision(fechaActual);
          factura.setMontoTotal(plan.get().getCostoMensual());
          perfil.setEstado(false);
-         perfil.setImagen(null);
+         perfil.setImagen("user1.png");
          perfil.setNombre("user1");
-         listaPerfiles.add(0, perfil);
+         //listaPerfiles.add(perfil);
          usuario.setCorreo(usuarioTarjeta.getCorreo());
          usuario.setContrasena(usuarioTarjeta.getContrasena());
          usuario.setApellido(usuarioTarjeta.getApellido());
@@ -104,16 +106,13 @@ public class UsuarioImpl implements UsuarioService{
             //se le asigna la tarjeta al usuario
             usuario.setTarjeta(tarjeta);
             usuario.setPlan(plan.get());
-            usuario.setPerfiles(listaPerfiles);
             usuarioRepositorio.save(usuario);
             factura.setUsuarioF(usuario);
             Optional<Usuario> nuevoUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
             factura.setUsuarioF(nuevoUsuario.get());
             facturaRepositorio.save(factura);
-            Optional<Usuario> nueUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
-            return nueUsuario;
-
-
+            perfil.setUsuarioP(nuevoUsuario.get());
+            perfilRepositorio.save(perfil);
             }else{
                 // si la tarjeta expiro
                 return Optional.empty();
@@ -122,6 +121,10 @@ public class UsuarioImpl implements UsuarioService{
             // si la tarjeta ya tiene dueño o si el correo esta en uso
             return Optional.empty();
          }
+         
+         Optional<Usuario> nueUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
+            return nueUsuario;
+
     }
     
 }
