@@ -2,7 +2,6 @@ package hn.unah.proyecto.netflix.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +33,7 @@ public class Perfil {
     private boolean estado;
     private String contraseniaperfil;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     private Usuario usuarioP;
 

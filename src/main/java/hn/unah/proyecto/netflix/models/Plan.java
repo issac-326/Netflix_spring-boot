@@ -37,6 +37,7 @@ public class Plan {
     @Column(name = "nombreplan")
     private String nombrePlan;
     @JsonIgnore
+    
     @OneToOne(mappedBy = "plan")
     private Usuario usuario;
 }
