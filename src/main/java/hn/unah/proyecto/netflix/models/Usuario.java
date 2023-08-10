@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -52,8 +53,8 @@ public class Usuario {
     @JoinColumn(name = "numerotarjeta", referencedColumnName = "numerotarjeta")
     private Tarjeta tarjeta;
 
-    // relacion de usuario/plan
-    @OneToOne(cascade = CascadeType.ALL)
+    // relacion de usuario/plan -< Varios usuario pueden tener el mismo plan
+    @ManyToOne
     @JoinColumn(name = "idplan", referencedColumnName = "idplan")
     private Plan plan;
 
