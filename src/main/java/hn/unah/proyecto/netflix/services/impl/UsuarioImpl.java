@@ -71,11 +71,11 @@ public class UsuarioImpl implements UsuarioService{
          usuario.setContrasena(usuarioTarjeta.getContrasena());
          usuario.setApellido(usuarioTarjeta.getApellido());
          usuario.setNombre(usuarioTarjeta.getNombre());
+         int i = 0;
          usuario.setFechaRegistro(fechaActual);
-
          //si la tarjeta no existe si la podemos crear y si el correo no esta en uso
          if(tarjetaVerificar.isEmpty() && usuarioCorreo.isEmpty()){
-            if(usuarioTarjeta.getFechaVencimiento().after(fechaActual)){
+            if(usuarioTarjeta.getFechaVencimiento().after(usuario.getFechaRegistro())){
             //Si entra es por que aun no a expirado
             Tarjeta tarjeta = new Tarjeta();
             tarjeta.setNumeroTarjeta(usuarioTarjeta.getNumeroTarjeta());
@@ -84,8 +84,8 @@ public class UsuarioImpl implements UsuarioService{
             tarjeta.setTipoTarjeta(usuarioTarjeta.getTipoTarjeta());
 
             //se le asigna la tarjeta al usuario
-            //usuario.setTarjeta(tarjeta);
-            //usuario.setPLan(plan);
+            usuario.setTarjeta(tarjeta);
+            usuario.setPlan(plan.get());
             usuarioRepositorio.save(usuario);
 
             Optional<Usuario> nuevoUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
@@ -99,8 +99,6 @@ public class UsuarioImpl implements UsuarioService{
             // si la tarjeta ya tiene dueño o si el correo esta en uso
             return Optional.empty();
          }
-
-
     }
     
 }
