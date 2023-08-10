@@ -10,4 +10,5 @@ public interface UsuarioService {
     public Optional<Usuario> login(Usuario usuario);
 
     public Optional<Usuario> registro(UsuarioTarjeta usuarioTarjeta);
+
 }
