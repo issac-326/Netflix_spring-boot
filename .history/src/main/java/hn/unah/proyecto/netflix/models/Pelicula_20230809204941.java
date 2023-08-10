@@ -31,15 +31,11 @@ public class Pelicula {
 
     private String descripcion;
 
-    private String clasificacion;
+    private String calificacion;
 
     private String duracion;
 
     private String imagen;
-    private int aniolanzamiento;
-    private int numerodevistas;
-    private int numerolikes;
-    private int numerodislikes;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

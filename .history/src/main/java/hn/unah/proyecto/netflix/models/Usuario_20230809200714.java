@@ -33,6 +33,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idusuario")
     private int idUsuario;
+
     private String correo;
     private String contrasena;
     private String nombre;

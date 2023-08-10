@@ -31,15 +31,11 @@ public class Pelicula {
 
     private String descripcion;
 
-    private String clasificacion;
+    private String calificacion;
 
     private String duracion;
 
     private String imagen;
-    private int aniolanzamiento;
-    private int numerodevistas;
-    private int numerolikes;
-    private int numerodislikes;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -53,7 +49,7 @@ public class Pelicula {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idvermastarde", referencedColumnName = "idvermastarde")
+    @JoinColumn(name = "idvermastarde", referencedColumnName = "ivermastarde")
     private VerMastarde verTarde;
 
 }

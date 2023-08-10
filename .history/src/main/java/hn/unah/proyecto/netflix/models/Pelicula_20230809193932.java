@@ -2,10 +2,12 @@ package hn.unah.proyecto.netflix.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,28 +17,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "planes")
-@Getter
+@Table(name = "peliculas")
 @Setter
+@Getter
 @NoArgsConstructor
-public class Plan {
-
+public class Pelicula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idplan")
-    private int idPlan;
+    @Column(name = "idpeliculas")
+    private int idPeliculas;
+
+    private String titulo;
 
     private String descripcion;
 
-    @Column(name = "costomensual")
-    private double costoMensual;
+    private String calificacion;
 
-    @Column(name = "cantidadperfiles")
-    private int cantidadPerfiles;
+    private String duracion;
 
-    @Column(name = "nombreplan")
-    private String nombrePlan;
+    private String imagen;
+
     @JsonIgnore
-    @OneToOne(mappedBy = "plan")
-    private Usuario usuario;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idcategorias", referencedColumnName="idcategorias")
+	private Categoria categoria;
+
+  
+
 }

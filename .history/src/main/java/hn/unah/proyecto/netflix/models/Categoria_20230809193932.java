@@ -15,20 +15,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "categorias")
+@Table(name="categorias")
 @Setter
 @Getter
 @NoArgsConstructor
 public class Categoria {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcategorias")
-    private int idCategorias;
+    private int idCategoria;
 
     private String genero;
-    private String descripcion;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<Pelicula> peliculas;
+    @OneToMany(mappedBy="categoria")
+	private List<Pelicula> peliculas;
 }

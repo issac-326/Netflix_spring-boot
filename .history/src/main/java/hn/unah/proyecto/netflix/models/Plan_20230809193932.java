@@ -20,23 +20,21 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Plan {
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "idplan")
     private int idPlan;
 
     private String descripcion;
-
+    
     @Column(name = "costomensual")
     private double costoMensual;
 
     @Column(name = "cantidadperfiles")
     private int cantidadPerfiles;
 
-    @Column(name = "nombreplan")
-    private String nombrePlan;
     @JsonIgnore
-    @OneToOne(mappedBy = "plan")
+    @OneToOne(mappedBy ="plan")
     private Usuario usuario;
 }
