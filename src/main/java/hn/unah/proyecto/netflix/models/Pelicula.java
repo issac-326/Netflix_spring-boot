@@ -31,7 +31,7 @@ public class Pelicula {
 
     private String descripcion;
 
-    private String clasificacion;
+    private String calificacion;
 
     private String duracion;
 
