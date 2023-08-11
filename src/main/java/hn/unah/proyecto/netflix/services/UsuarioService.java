@@ -11,4 +11,6 @@ public interface UsuarioService {
 
     public Optional<Usuario> registro(UsuarioTarjeta usuarioTarjeta);
 
+    public Optional<Usuario> obtenerUsuario(int idUsuario);
+
 }

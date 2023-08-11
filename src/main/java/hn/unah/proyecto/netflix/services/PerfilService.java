@@ -9,4 +9,6 @@ public interface PerfilService {
     public Perfil cambiarEstado(int idPerfil);
 
     public List<Perfil> retornarPerfiles(int idUsuario);
+
+    public Perfil crearPerfil(Perfil perfil, int idUsuario);
 }

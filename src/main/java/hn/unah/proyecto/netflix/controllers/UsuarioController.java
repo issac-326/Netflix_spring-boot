@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,12 @@ public class UsuarioController {
     
     @Autowired
     private UsuarioImpl usuarioImplementacion;
+
+        
+    @GetMapping("/usuario/{idUsuario}")
+    public Optional<Usuario> obtenerUsuario(@PathVariable int idUsuario){
+        return usuarioImplementacion.obtenerUsuario(idUsuario);
+    }
 
     @GetMapping("/usuario")
     public Optional<Usuario> login(@RequestBody Usuario usuario){

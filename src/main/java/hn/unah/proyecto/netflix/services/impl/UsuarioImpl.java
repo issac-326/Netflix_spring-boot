@@ -126,5 +126,10 @@ public class UsuarioImpl implements UsuarioService{
             return nueUsuario;
 
     }
+
+    @Override
+    public Optional<Usuario> obtenerUsuario(int idUsuario) {
+        return usuarioRepositorio.findById(idUsuario);
+    }
     
 }

@@ -32,6 +32,7 @@ public class Perfil {
     private String imagen;
     private boolean estado;
     private String contraseniaperfil;
+    
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
