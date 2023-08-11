@@ -1,5 +1,7 @@
 package hn.unah.proyecto.netflix.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,9 +42,12 @@ public class Perfil {
 
     // RELACION VER MAS TARDE
 
-    @OneToOne(mappedBy = "perfil")
-    private VerMastarde verMastarde;
-    // relacion seguir viendo
+    //@OneToOne(mappedBy = "perfil")
+    //private VerMastarde verMastarde;
+    //// relacion seguir viendo
+
+    @OneToMany(mappedBy = "perfilTarde")
+    private List<Pelicula> verMasTarde; 
 
     @OneToOne(mappedBy = "perfil")
     private SeguirViendo seguirViendo;

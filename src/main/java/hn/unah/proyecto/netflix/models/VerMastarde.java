@@ -33,6 +33,6 @@ public class VerMastarde {
     @JoinColumn(name = "idperfil", referencedColumnName = "idperfil")
     private Perfil perfil;
 
-    @OneToMany(mappedBy = "verTarde")
-    private List<Pelicula> peliculas;
+    //@OneToMany(mappedBy = "verTarde")
+    //private List<Pelicula> peliculas;
 }
