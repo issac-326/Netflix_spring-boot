@@ -26,5 +26,11 @@ public class PeliculaImpl implements PeliculaService{
 
         return listPeliculas;
     }
+
+    @Override
+    public List<Pelicula> buscarPorCategoria() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPorCategoria'");
+    }
     
 }
