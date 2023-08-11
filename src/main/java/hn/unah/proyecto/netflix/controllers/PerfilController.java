@@ -1,6 +1,7 @@
 package hn.unah.proyecto.netflix.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class PerfilController {
     }
 
     @GetMapping("/cambiar/estado/{idPerfil}")
-    public Perfil cambiarEstado(@PathVariable int idPerfil){
-        return perfilImplementacion.cambiarEstado(idPerfil);
+    public Optional<Perfil> ingresarAlPerfil(@PathVariable int idPerfil){
+        return perfilImplementacion.ingresarAlPerfil(idPerfil);
     }
 
     //crea un perfil

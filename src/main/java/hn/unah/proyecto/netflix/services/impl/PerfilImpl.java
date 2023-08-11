@@ -23,19 +23,21 @@ public class PerfilImpl implements PerfilService{
 
     //al ingresar a un perfil cambia el estado a activo
     @Override
-    public Perfil cambiarEstado(int idPerfil) {
+    public Optional<Perfil> ingresarAlPerfil(int idPerfil) {
 
         Optional<Perfil> perfilBuscar = perfilRepositorio.findById(idPerfil);
 
         Perfil perfil = perfilBuscar.get();
 
         if(perfil.getEstado() == true){
-            perfil.setEstado(false);
+            //El perfil ya esta en uso
+            return Optional.empty();
         }else{
             perfil.setEstado(true);
         }
+
         perfilRepositorio.save(perfil);
-        return perfil;
+        return perfilBuscar;
     }
 
     @Override

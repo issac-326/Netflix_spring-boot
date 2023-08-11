@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "ver_mastarde")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,6 +35,6 @@ public class VerMastarde {
     @JoinColumn(name = "idperfil", referencedColumnName = "idperfil")
     private Perfil perfil;
 
-    @OneToMany(mappedBy = "verTarde")
-    private List<Pelicula> peliculas;
+    //@OneToMany(mappedBy = "verTarde")
+    //private List<Pelicula> peliculas;
 }

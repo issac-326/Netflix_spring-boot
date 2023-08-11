@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +31,7 @@ public class Categoria {
     private String genero;
     private String descripcion;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private List<Pelicula> peliculas;
 }
