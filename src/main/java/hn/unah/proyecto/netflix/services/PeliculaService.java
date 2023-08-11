@@ -8,5 +8,5 @@ public interface PeliculaService {
     
     public List<Pelicula> obtenerPeliculas();
 
-    public List<Pelicula> buscarPorCategoria();
+    public List<Pelicula> buscarPorCategoria(int idcategoria);
 }

@@ -1,17 +1,14 @@
 package hn.unah.proyecto.netflix.repositorys;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import hn.unah.proyecto.netflix.models.Categoria;
 import hn.unah.proyecto.netflix.models.Pelicula;
-import hn.unah.proyecto.netflix.models.Usuario;
 
 
-public interface PeliculaRepository extends CrudRepository<Pelicula, Integer> {
+public interface PeliculaRepository extends JpaRepository<Pelicula, Integer> {
     
-    Optional<Usuario> findByCorreo(String correo);
     List<Pelicula> findByCategoria(Categoria categoria);
 }
