@@ -36,7 +36,6 @@ public class PerfilController {
         return perfilImplementacion.obtenerPerfil(id);
     } 
 
-
     // crea un perfil
     @PostMapping("/crear/{idUsuario}")
     public Perfil crearPerfil(@RequestBody Perfil perfil, @PathVariable int idUsuario) {
@@ -44,15 +43,8 @@ public class PerfilController {
     }
 
     @PostMapping("/actualizar")
-    public Perfil crearPerfil(@RequestBody Perfil perfil){
+    public Perfil modificarPerfil(@RequestBody Perfil perfil){
         return perfilImplementacion.actualizaPerfil(perfil);
-    }
-
-    // perfilModificado va la informacion que se desea modificar y idUsuario es para
-    // saber a que Usuario le pertenece
-    @PostMapping("/modificarPerfil/{idPerfil}")
-    public Perfil modificarPerfil(@RequestBody Perfil perfilModificado, @PathVariable int idPerfil) {
-        return perfilImplementacion.actualizarPerfil2(perfilModificado, idPerfil);
     }
 
     @GetMapping("/eliminar/{idPerfil}")

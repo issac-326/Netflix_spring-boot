@@ -19,7 +19,4 @@ public interface UsuarioService {
     public Usuario actualizarTarjeta(int idUsuario, Tarjeta tarjeta);
 
     public Usuario actualizarPlan(int idUsuario, int idPlan);
-    
-    public Optional<Usuario> actualizarUsuario(UsuarioTarjeta usuarioTarjeta);
-
 }

@@ -164,45 +164,4 @@ public class UsuarioImpl implements UsuarioService {
         return usuarioRepositorio.save(usuarioActualizar.get());
     }
 
-    @Override
-    public Optional<Usuario> actualizarUsuario(UsuarioTarjeta usuarioTarjeta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizarUsuario'");
-    }
-    
-/*     public Optional<Usuario> actualizarUsuario(UsuarioTarjeta usuarioTarjeta) {
-        Optional<Usuario> usuario = usuarioRepositorio.findById(usuarioTarjeta.getIdUsuario());
-
-        if (usuario == null) {
-            return Optional.empty();
-        }
-
-        if (usuarioTarjeta.getNombre() != null) {
-            usuario.get().setNombre(usuarioTarjeta.getNombre());
-        }
-        if (usuarioTarjeta.getApellido() != null) {
-            usuario.get().setApellido(usuarioTarjeta.getApellido());
-        }
-        if (usuarioTarjeta.getIdPlan() != 0) {
-            Optional<Plan> plan = planRepositorio.findById(usuarioTarjeta.getIdPlan());
-            usuario.get().setPlan(plan.get());
-        }
-        if (usuarioTarjeta.getContrasena() != null) {
-            usuario.get().setContrasena(usuarioTarjeta.getContrasena());
-        }
-        if (usuarioTarjeta.getNumeroTarjeta() != 0) {
-            Optional<Tarjeta> tarjetaExistente = tarjetaRepositorio.findById(usuarioTarjeta.getNumeroTarjeta());
-
-            if (tarjetaExistente == null) {
-                Tarjeta tarjeta = new Tarjeta();
-                tarjeta.setNumeroTarjeta(usuarioTarjeta.getNumeroTarjeta());
-                // Actualiza otros campos de la tarjeta según sea necesario
-                usuario.get().setTarjeta(tarjeta);
-            }
-        }
-        usuarioRepositorio.save(usuario.get());
-        Optional<Usuario> nueUsuario = usuarioRepositorio.findById(usuarioTarjeta.getIdUsuario());
-        return nueUsuario;
-    } */
-
 }

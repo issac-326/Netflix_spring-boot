@@ -62,6 +62,7 @@ public class PerfilImpl implements PerfilService {
 
     @Override
     public Perfil actualizaPerfil(Perfil perfil) {
+
         Optional<Perfil> perfilActualizar = perfilRepositorio.findById(perfil.getIdPerfil());
 
         perfilActualizar.get().setContraseniaperfil(perfil.getContraseniaperfil());
@@ -69,29 +70,6 @@ public class PerfilImpl implements PerfilService {
         perfilActualizar.get().setNombre(perfil.getNombre());
 
         return perfilRepositorio.save(perfilActualizar.get());
-    }
-    
-    public Perfil actualizarPerfil2(Perfil perfilModificado, int idPerfil) {
-        //nombre, contra, imagen
-        // buscamos el perfil
-        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        
-        // se cambia el tipo de datos
-        Perfil perfilActual = perfil.get();
-        // se cambia la informacion
-        if (perfilModificado.getContraseniaperfil() != null) {
-            perfilActual.setContraseniaperfil(perfilModificado.getContraseniaperfil());
-        }
-        if (perfilModificado.getImagen() != null) {
-            perfilActual.setImagen(perfilModificado.getImagen());
-        }
-        if (perfilModificado.getNombre() != null) {
-            perfilActual.setNombre(perfilModificado.getNombre());
-        }
-
-        perfilRepositorio.save(perfilActual);
-
-        return perfilActual;
     }
 
     @Override
@@ -120,9 +98,4 @@ public class PerfilImpl implements PerfilService {
         return perfilBuscar;
     }
 
-    @Override
-    public Perfil actualizarPerfil(Perfil perfilModificado, int idPerfil) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizarPerfil'");
-    }
 }

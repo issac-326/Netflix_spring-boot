@@ -19,7 +19,5 @@ public interface PerfilService {
 
     public Perfil actualizaPerfil(Perfil perfil);
     
-    public Perfil actualizarPerfil(Perfil perfilModificado, int idPerfil);
-
     public String eliminarPerfil(int idPerfil);
 }

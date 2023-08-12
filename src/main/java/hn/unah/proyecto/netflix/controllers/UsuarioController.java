@@ -52,9 +52,4 @@ public class UsuarioController {
     public Usuario actualizarPlan(@PathVariable int idUsuario, @PathVariable int idPlan){
         return usuarioImplementacion.actualizarPlan(idUsuario, idPlan);
     }
-
-    @PutMapping("/usuario/actualizar")
-    public Optional<Usuario> actualizarUsuarioTarjeta(@RequestBody UsuarioTarjeta usuarioTarjeta) {
-        return usuarioImplementacion.actualizarUsuario(usuarioTarjeta);
-    }
 }
