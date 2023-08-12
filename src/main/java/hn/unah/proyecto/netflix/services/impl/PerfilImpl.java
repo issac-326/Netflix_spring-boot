@@ -56,38 +56,52 @@ public class PerfilImpl implements PerfilService {
     }
 
     @Override
-    public Optional<Perfil> actualizarPerfil(Perfil perfilModificado, int idUsuario) {
-        // buscamos el usuario
-        Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
-        // verificamos si el usurio existe
-        if (usuario == null) {
-            return Optional.empty(); // si no existe se retorna vacio
-        }
-        /*
-         * esta linea esta mal deberia de buscar en la lista del perfil
-         * perfilActual es quien tiene la informacion sin modificar
-         */
-        Optional<Perfil> perfilActual = perfilRepositorio.findByUsuarioP(usuario);
-        // se verifica si existe
-        if (perfilActual == null) {
-            return Optional.empty();
-        }
+    public Perfil actualizarPerfil(Perfil perfilModificado, int idPerfil) {
+        //nombre, contra, imagen
+        // buscamos el perfil
+        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
+        
         // se cambia el tipo de datos
-        Perfil perfil = perfilActual.get();
+        Perfil perfilActual = perfil.get();
         // se cambia la informacion
         if (perfilModificado.getContraseniaperfil() != null) {
-            perfil.setContraseniaperfil(perfilModificado.getContraseniaperfil());
+            perfilActual.setContraseniaperfil(perfilModificado.getContraseniaperfil());
         }
         if (perfilModificado.getImagen() != null) {
-            perfil.setImagen(perfilModificado.getImagen());
+            perfilActual.setImagen(perfilModificado.getImagen());
         }
         if (perfilModificado.getNombre() != null) {
-            perfil.setNombre(perfilModificado.getNombre());
+            perfilActual.setNombre(perfilModificado.getNombre());
         }
 
-        perfilRepositorio.save(perfil);
-        Optional<Perfil> nvaPerfil = perfilRepositorio.findByUsuarioP(usuario);
+        perfilRepositorio.save(perfilActual);
 
-        return nvaPerfil;
+        return perfilActual;
+    }
+
+    @Override
+    public String eliminarPerfil(int idPerfil) {
+        
+        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
+
+        perfilRepositorio.delete(perfil.get());
+
+        return "se elimino perfil";
+    }
+
+    @Override
+    public Optional<Perfil> contadorActivo(int idPerfil, int idUsuario) {
+        
+        Optional<Perfil> perfilBuscar = perfilRepositorio.findById(idPerfil);
+        Optional<Usuario> usuarioBuscar = usuarioRepositorio.findById(idUsuario);
+        if(usuarioBuscar.get().getUsuarioActivos()>= usuarioBuscar.get().getPlan().getCantidadPerfiles()){
+            return Optional.empty();
+        }
+
+        Usuario usuario = usuarioBuscar.get();
+
+        usuario.setUsuarioActivos(usuario.getUsuarioActivos() + 1);
+        usuarioRepositorio.save(usuario);
+        return perfilBuscar;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,8 +39,13 @@ public class PerfilController {
 
     // perfilModificado va la informacion que se desea modificar y idUsuario es para
     // saber a que Usuario le pertenece
-    @PutMapping("/modificarPerfil/{idUsuario}")
-    public Optional<Perfil> modificarPerfil(@RequestBody Perfil perfilModificado, @PathVariable int idUsuario) {
-        return perfilImplementacion.actualizarPerfil(perfilModificado, idUsuario);
+    @PostMapping("/modificarPerfil/{idPerfil}")
+    public Perfil modificarPerfil(@RequestBody Perfil perfilModificado, @PathVariable int idPerfil) {
+        return perfilImplementacion.actualizarPerfil(perfilModificado, idPerfil);
+    }
+
+    @GetMapping("/eliminar/{idPerfil}")
+    public String eliminarPerfil(@PathVariable int idPerfil){
+        return perfilImplementacion.eliminarPerfil(idPerfil);
     }
 }
