@@ -13,7 +13,7 @@ import hn.unah.proyecto.netflix.repositorys.UsuarioRepository;
 import hn.unah.proyecto.netflix.services.PerfilService;
 
 @Service
-public class PerfilImpl implements PerfilService {
+public class PerfilImpl implements PerfilService{
 
     @Autowired
     private UsuarioRepository usuarioRepositorio;
@@ -21,7 +21,7 @@ public class PerfilImpl implements PerfilService {
     @Autowired
     private PerfilRepository perfilRepositorio;
 
-    // al ingresar a un perfil cambia el estado a activo
+    //al ingresar a un perfil cambia el estado a activo
     @Override
     public Optional<Perfil> ingresarAlPerfil(int idPerfil) {
 
@@ -29,10 +29,10 @@ public class PerfilImpl implements PerfilService {
 
         Perfil perfil = perfilBuscar.get();
 
-        if (perfil.getEstado() == true) {
-            // El perfil ya esta en uso
+        if(perfil.getEstado() == true){
+            //El perfil ya esta en uso
             return Optional.empty();
-        } else {
+        }else{
             perfil.setEstado(true);
         }
 
@@ -42,7 +42,7 @@ public class PerfilImpl implements PerfilService {
 
     @Override
     public List<Perfil> retornarPerfiles(int idUsuario) {
-
+        
         Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
 
         return usuario.get().getPerfiles();
@@ -54,35 +54,5 @@ public class PerfilImpl implements PerfilService {
         perfil.setUsuarioP(usuario.get());
         return perfilRepositorio.save(perfil);
     }
-
-    @Override
-    public Optional<Perfil> actualizarPerfil(Perfil perfilModificado, int idUsuario) {
-        Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
-
-        if (usuario == null) {
-            return Optional.empty();
-        }
-
-        Optional<Perfil> perfilActual = perfilRepositorio.findByUsuarioP(usuario);
-
-        if (perfilActual == null) {
-            return Optional.empty();
-        }
-        Perfil perfil = perfilActual.get();
-
-        if (perfilModificado.getContraseniaperfil() != null) {
-            perfil.setContraseniaperfil(perfilModificado.getContraseniaperfil());
-        }
-        if (perfilModificado.getImagen() != null) {
-            perfil.setImagen(perfilModificado.getImagen());
-        }
-        if (perfilModificado.getNombre() != null) {
-            perfil.setNombre(perfilModificado.getNombre());
-        }
-
-        perfilRepositorio.save(perfil);
-        Optional<Perfil> nvaPerfil = perfilRepositorio.findByUsuarioP(usuario);
-
-        return nvaPerfil;
-    }
+    
 }

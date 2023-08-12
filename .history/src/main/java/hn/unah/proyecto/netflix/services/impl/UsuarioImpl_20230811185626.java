@@ -136,7 +136,7 @@ public class UsuarioImpl implements UsuarioService {
 
     @Override
     public Optional<Usuario> actualizarUsuario(UsuarioTarjeta usuarioTarjeta) {
-        Optional<Usuario> usuario = usuarioRepositorio.findById(usuarioTarjeta.getIdUsuario());
+        Optional<Usuario> usuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
 
         if (usuario == null) {
             return Optional.empty();
@@ -166,7 +166,7 @@ public class UsuarioImpl implements UsuarioService {
             }
         }
         usuarioRepositorio.save(usuario.get());
-        Optional<Usuario> nueUsuario = usuarioRepositorio.findById(usuarioTarjeta.getIdUsuario());
+        Optional<Usuario> nueUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
         return nueUsuario;
     }
 

@@ -59,19 +59,18 @@ public class PerfilImpl implements PerfilService {
     public Optional<Perfil> actualizarPerfil(Perfil perfilModificado, int idUsuario) {
         Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
 
-        if (usuario == null) {
+        if (!usuario.isPresent()) {
             return Optional.empty();
         }
 
-        Optional<Perfil> perfilActual = perfilRepositorio.findByUsuarioP(usuario);
+        Optional<Perfil> perfil = perfilRepositorio.findByUsuarioP(usuario.get());
 
-        if (perfilActual == null) {
+        if (perfil == null) {
             return Optional.empty();
         }
-        Perfil perfil = perfilActual.get();
 
-        if (perfilModificado.getContraseniaperfil() != null) {
-            perfil.setContraseniaperfil(perfilModificado.getContraseniaperfil());
+        if (perfilModificado.getContrasena() != null) {
+            perfil.setContrasena(perfilModificado.getContrasena());
         }
         if (perfilModificado.getImagen() != null) {
             perfil.setImagen(perfilModificado.getImagen());
@@ -81,8 +80,6 @@ public class PerfilImpl implements PerfilService {
         }
 
         perfilRepositorio.save(perfil);
-        Optional<Perfil> nvaPerfil = perfilRepositorio.findByUsuarioP(usuario);
-
-        return nvaPerfil;
+        return Optional.of(perfil);
     }
 }
