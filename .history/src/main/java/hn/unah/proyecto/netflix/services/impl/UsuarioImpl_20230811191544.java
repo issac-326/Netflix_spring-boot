@@ -135,42 +135,7 @@ public class UsuarioImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario actualizarUsuario(Usuario usuario) {
-        Optional<Usuario> usuarioActualizar = usuarioRepositorio.findById(usuario.getIdUsuario());
-
-        usuarioActualizar.get().setApellido(usuario.getApellido());
-        usuarioActualizar.get().setNombre(usuario.getNombre());
-        usuarioActualizar.get().setCorreo(usuario.getCorreo());
-        usuarioActualizar.get().setContrasena(usuario.getContrasena());
-        usuarioActualizar.get().setPerfiles(usuarioActualizar.get().getPerfiles());
-
-        return usuarioRepositorio.save(usuarioActualizar.get());
-    }
-
-    @Override
-    public Usuario actualizarTarjeta(int idUsuario, Tarjeta tarjeta) {
-        Optional<Usuario> usuarioActualizar = usuarioRepositorio.findById(idUsuario);
-
-        usuarioActualizar.get().setTarjeta(tarjeta);
-        return usuarioRepositorio.save(usuarioActualizar.get());
-    }
-
-    @Override
-    public Usuario actualizarPlan(int idUsuario, int idPlan) {
-        Optional<Usuario> usuarioActualizar = usuarioRepositorio.findById(idUsuario);
-        Optional<Plan> plan = planRepositorio.findById(idPlan);
-
-        usuarioActualizar.get().setPlan(plan.get());
-        return usuarioRepositorio.save(usuarioActualizar.get());
-    }
-
-    @Override
     public Optional<Usuario> actualizarUsuario(UsuarioTarjeta usuarioTarjeta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizarUsuario'");
-    }
-    
-/*     public Optional<Usuario> actualizarUsuario(UsuarioTarjeta usuarioTarjeta) {
         Optional<Usuario> usuario = usuarioRepositorio.findById(usuarioTarjeta.getIdUsuario());
 
         if (usuario == null) {
@@ -203,6 +168,6 @@ public class UsuarioImpl implements UsuarioService {
         usuarioRepositorio.save(usuario.get());
         Optional<Usuario> nueUsuario = usuarioRepositorio.findById(usuarioTarjeta.getIdUsuario());
         return nueUsuario;
-    } */
+    }
 
 }

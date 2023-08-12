@@ -8,6 +8,5 @@ import hn.unah.proyecto.netflix.models.Perfil;
 import hn.unah.proyecto.netflix.models.Usuario;
 
 public interface PerfilRepository extends CrudRepository<Perfil, Integer> {
-
-    Optional<Perfil> findByUsuarioP(Optional<Usuario> usuario);
+    Optional<Usuario> findByUsuarioP(Usuario usuario);
 }

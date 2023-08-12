@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.proyecto.netflix.dto.UsuarioTarjeta;
-import hn.unah.proyecto.netflix.models.Tarjeta;
 import hn.unah.proyecto.netflix.models.Usuario;
 import hn.unah.proyecto.netflix.services.impl.UsuarioImpl;
 
@@ -38,23 +37,8 @@ public class UsuarioController {
         return usuarioImplementacion.registro(usuarioTarjeta);
     }
 
-    @PostMapping("/usuario/actualizar")
-    public Usuario actualizUsuario(@RequestBody Usuario usuario){
-        return usuarioImplementacion.actualizarUsuario(usuario);
-    }
-
-    @PostMapping("/usuario/{idUsuario}/tarjeta/actualizar")
-    public Usuario actualizarTarjeta(@PathVariable int idUsuario, @RequestBody Tarjeta tarjeta){
-        return usuarioImplementacion.actualizarTarjeta(idUsuario, tarjeta);
-    }
-
-    @PostMapping("/usuario/{idUsuario}/plan/{idPlan}/actualizar")
-    public Usuario actualizarPlan(@PathVariable int idUsuario, @PathVariable int idPlan){
-        return usuarioImplementacion.actualizarPlan(idUsuario, idPlan);
-    }
-
     @PutMapping("/usuario/actualizar")
-    public Optional<Usuario> actualizarUsuarioTarjeta(@RequestBody UsuarioTarjeta usuarioTarjeta) {
+    public Optional<Usuario> actualizarUsuario(@RequestBody UsuarioTarjeta usuarioTarjeta) {
         return usuarioImplementacion.actualizarUsuario(usuarioTarjeta);
     }
 }

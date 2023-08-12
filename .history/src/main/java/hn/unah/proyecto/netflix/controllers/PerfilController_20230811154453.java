@@ -17,46 +17,23 @@ import hn.unah.proyecto.netflix.services.impl.PerfilImpl;
 @RestController
 @RequestMapping("/api/perfil")
 public class PerfilController {
-
+    
     @Autowired
     private PerfilImpl perfilImplementacion;
 
     @GetMapping("/perfiles/{idUsuario}")
-    public List<Perfil> retornarPerfiles(@PathVariable int idUsuario) {
+    public List<Perfil> retornarPerfiles(@PathVariable int idUsuario){
         return perfilImplementacion.retornarPerfiles(idUsuario);
     }
 
-     @GetMapping("/cambiar/estado/{idPerfil}")
+/*     @GetMapping("/cambiar/estado/{idPerfil}")
     public Optional<Perfil> ingresarAlPerfil(@PathVariable int idPerfil){
         return perfilImplementacion.ingresarAlPerfil(idPerfil);
-    } 
+    } */
 
-    @GetMapping("/{id}")
-    public Optional<Perfil> obtenerPerfil(@PathVariable int id){
-        return perfilImplementacion.obtenerPerfil(id);
-    } 
-
-
-    // crea un perfil
+    //crea un perfil
     @PostMapping("/crear/{idUsuario}")
-    public Perfil crearPerfil(@RequestBody Perfil perfil, @PathVariable int idUsuario) {
+    public Perfil crearPerfil(@RequestBody Perfil perfil, @PathVariable int idUsuario){
         return perfilImplementacion.crearPerfil(perfil, idUsuario);
-    }
-
-    @PostMapping("/actualizar")
-    public Perfil crearPerfil(@RequestBody Perfil perfil){
-        return perfilImplementacion.actualizaPerfil(perfil);
-    }
-
-    // perfilModificado va la informacion que se desea modificar y idUsuario es para
-    // saber a que Usuario le pertenece
-    @PostMapping("/modificarPerfil/{idPerfil}")
-    public Perfil modificarPerfil(@RequestBody Perfil perfilModificado, @PathVariable int idPerfil) {
-        return perfilImplementacion.actualizarPerfil2(perfilModificado, idPerfil);
-    }
-
-    @GetMapping("/eliminar/{idPerfil}")
-    public String eliminarPerfil(@PathVariable int idPerfil){
-        return perfilImplementacion.eliminarPerfil(idPerfil);
     }
 }

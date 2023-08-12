@@ -13,7 +13,7 @@ import hn.unah.proyecto.netflix.repositorys.UsuarioRepository;
 import hn.unah.proyecto.netflix.services.PerfilService;
 
 @Service
-public class PerfilImpl implements PerfilService{
+public class PerfilImpl implements PerfilService {
 
     @Autowired
     private UsuarioRepository usuarioRepositorio;
@@ -21,7 +21,7 @@ public class PerfilImpl implements PerfilService{
     @Autowired
     private PerfilRepository perfilRepositorio;
 
-    //al ingresar a un perfil cambia el estado a activo
+    // al ingresar a un perfil cambia el estado a activo
     @Override
     public Optional<Perfil> ingresarAlPerfil(int idPerfil) {
 
@@ -29,10 +29,10 @@ public class PerfilImpl implements PerfilService{
 
         Perfil perfil = perfilBuscar.get();
 
-        if(perfil.getEstado() == true){
-            //El perfil ya esta en uso
+        if (perfil.getEstado() == true) {
+            // El perfil ya esta en uso
             return Optional.empty();
-        }else{
+        } else {
             perfil.setEstado(true);
         }
 
@@ -42,7 +42,7 @@ public class PerfilImpl implements PerfilService{
 
     @Override
     public List<Perfil> retornarPerfiles(int idUsuario) {
-        
+
         Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
 
         return usuario.get().getPerfiles();
@@ -71,4 +71,58 @@ public class PerfilImpl implements PerfilService{
         return perfilRepositorio.save(perfilActualizar.get());
     }
     
+    public Perfil actualizarPerfil2(Perfil perfilModificado, int idPerfil) {
+        //nombre, contra, imagen
+        // buscamos el perfil
+        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
+        
+        // se cambia el tipo de datos
+        Perfil perfilActual = perfil.get();
+        // se cambia la informacion
+        if (perfilModificado.getContraseniaperfil() != null) {
+            perfilActual.setContraseniaperfil(perfilModificado.getContraseniaperfil());
+        }
+        if (perfilModificado.getImagen() != null) {
+            perfilActual.setImagen(perfilModificado.getImagen());
+        }
+        if (perfilModificado.getNombre() != null) {
+            perfilActual.setNombre(perfilModificado.getNombre());
+        }
+
+        perfilRepositorio.save(perfilActual);
+
+        return perfilActual;
+    }
+
+    @Override
+    public String eliminarPerfil(int idPerfil) {
+        
+        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
+
+        perfilRepositorio.delete(perfil.get());
+
+        return "se elimino perfil";
+    }
+
+    @Override
+    public Optional<Perfil> contadorActivo(int idPerfil, int idUsuario) {
+        
+        Optional<Perfil> perfilBuscar = perfilRepositorio.findById(idPerfil);
+        Optional<Usuario> usuarioBuscar = usuarioRepositorio.findById(idUsuario);
+        if(usuarioBuscar.get().getUsuarioActivos()>= usuarioBuscar.get().getPlan().getCantidadPerfiles()){
+            return Optional.empty();
+        }
+
+        Usuario usuario = usuarioBuscar.get();
+
+        usuario.setUsuarioActivos(usuario.getUsuarioActivos() + 1);
+        usuarioRepositorio.save(usuario);
+        return perfilBuscar;
+    }
+
+    @Override
+    public Perfil actualizarPerfil(Perfil perfilModificado, int idPerfil) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actualizarPerfil'");
+    }
 }

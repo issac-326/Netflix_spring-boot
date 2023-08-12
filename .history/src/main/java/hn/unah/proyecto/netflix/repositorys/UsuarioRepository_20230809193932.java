@@ -1,13 +1,14 @@
 package hn.unah.proyecto.netflix.repositorys;
 
+
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import hn.unah.proyecto.netflix.models.Perfil;
 import hn.unah.proyecto.netflix.models.Usuario;
 
-public interface PerfilRepository extends CrudRepository<Perfil, Integer> {
+public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
+    
+    Optional<Usuario> findByCorreo(String correo);
 
-    Optional<Perfil> findByUsuarioP(Optional<Usuario> usuario);
 }

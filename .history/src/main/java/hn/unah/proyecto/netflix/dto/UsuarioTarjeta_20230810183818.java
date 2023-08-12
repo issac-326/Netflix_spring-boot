@@ -6,11 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class UsuarioTarjeta {
-    private int idUsuario;
+    
     private String correo;
     private String contrasena;
     private String nombre;
