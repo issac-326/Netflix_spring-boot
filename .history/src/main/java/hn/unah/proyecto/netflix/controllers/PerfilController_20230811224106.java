@@ -27,10 +27,11 @@ public class PerfilController {
         return perfilImplementacion.retornarPerfiles(idUsuario);
     }
 
-    @GetMapping("/cambiar/estado/{idPerfil}")
-    public Optional<Perfil> ingresarAlPerfil(@PathVariable int idPerfil) {
-        return perfilImplementacion.ingresarAlPerfil(idPerfil);
-    }
+     @GetMapping("/cambiar/estado/{idPerfil}")
+      public Optional<Perfil> ingresarAlPerfil(@PathVariable int idPerfil){
+      return perfilImplementacion.ingresarAlPerfil(idPerfil);
+      }
+     
 
     // crea un perfil
     @PostMapping("/crear/{idUsuario}")
@@ -38,8 +39,6 @@ public class PerfilController {
         return perfilImplementacion.crearPerfil(perfil, idUsuario);
     }
 
-    // perfilModificado va la informacion que se desea modificar y idUsuario es para
-    // saber a que Usuario le pertenece
     @PutMapping("/modificarPerfil/{idUsuario}")
     public Optional<Perfil> modificarPerfil(@RequestBody Perfil perfilModificado, @PathVariable int idUsuario) {
         return perfilImplementacion.actualizarPerfil(perfilModificado, idUsuario);
