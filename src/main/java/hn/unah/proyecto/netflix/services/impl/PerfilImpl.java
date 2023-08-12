@@ -54,5 +54,21 @@ public class PerfilImpl implements PerfilService{
         perfil.setUsuarioP(usuario.get());
         return perfilRepositorio.save(perfil);
     }
+
+    @Override
+    public Optional<Perfil> obtenerPerfil(int id) {
+        return perfilRepositorio.findById(id);
+    }
+
+    @Override
+    public Perfil actualizaPerfil(Perfil perfil) {
+        Optional<Perfil> perfilActualizar = perfilRepositorio.findById(perfil.getIdPerfil());
+
+        perfilActualizar.get().setContraseniaperfil(perfil.getContraseniaperfil());
+        perfilActualizar.get().setImagen(perfil.getImagen());
+        perfilActualizar.get().setNombre(perfil.getNombre());
+
+        return perfilRepositorio.save(perfilActualizar.get());
+    }
     
 }

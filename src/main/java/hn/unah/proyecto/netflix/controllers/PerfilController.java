@@ -26,14 +26,24 @@ public class PerfilController {
         return perfilImplementacion.retornarPerfiles(idUsuario);
     }
 
-/*     @GetMapping("/cambiar/estado/{idPerfil}")
+     @GetMapping("/cambiar/estado/{idPerfil}")
     public Optional<Perfil> ingresarAlPerfil(@PathVariable int idPerfil){
         return perfilImplementacion.ingresarAlPerfil(idPerfil);
-    } */
+    } 
+
+    @GetMapping("/{id}")
+    public Optional<Perfil> obtenerPerfil(@PathVariable int id){
+        return perfilImplementacion.obtenerPerfil(id);
+    } 
 
     //crea un perfil
     @PostMapping("/crear/{idUsuario}")
     public Perfil crearPerfil(@RequestBody Perfil perfil, @PathVariable int idUsuario){
         return perfilImplementacion.crearPerfil(perfil, idUsuario);
+    }
+
+    @PostMapping("/actualizar")
+    public Perfil crearPerfil(@RequestBody Perfil perfil){
+        return perfilImplementacion.actualizaPerfil(perfil);
     }
 }

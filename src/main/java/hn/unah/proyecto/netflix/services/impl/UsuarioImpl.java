@@ -131,5 +131,35 @@ public class UsuarioImpl implements UsuarioService{
     public Optional<Usuario> obtenerUsuario(int idUsuario) {
         return usuarioRepositorio.findById(idUsuario);
     }
+
+    @Override
+    public Usuario actualizarUsuario(Usuario usuario) {
+        Optional<Usuario> usuarioActualizar = usuarioRepositorio.findById(usuario.getIdUsuario());
+
+        usuarioActualizar.get().setApellido(usuario.getApellido());
+        usuarioActualizar.get().setNombre(usuario.getNombre());
+        usuarioActualizar.get().setCorreo(usuario.getCorreo());
+        usuarioActualizar.get().setContrasena(usuario.getContrasena());
+        usuarioActualizar.get().setPerfiles(usuarioActualizar.get().getPerfiles());
+
+        return usuarioRepositorio.save(usuarioActualizar.get());
+    }
+
+    @Override
+    public Usuario actualizarTarjeta(int idUsuario, Tarjeta tarjeta) {
+        Optional<Usuario> usuarioActualizar = usuarioRepositorio.findById(idUsuario);
+
+        usuarioActualizar.get().setTarjeta(tarjeta);
+        return usuarioRepositorio.save(usuarioActualizar.get());
+    }
+
+    @Override
+    public Usuario actualizarPlan(int idUsuario, int idPlan) {
+        Optional<Usuario> usuarioActualizar = usuarioRepositorio.findById(idUsuario);
+        Optional<Plan> plan = planRepositorio.findById(idPlan);
+
+        usuarioActualizar.get().setPlan(plan.get());
+        return usuarioRepositorio.save(usuarioActualizar.get());
+    }
     
 }
