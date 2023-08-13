@@ -78,7 +78,7 @@ public class PerfilController {
         return perfilImplementacion.eliminarSeguirViendo(idPerfil, idPelicula);
     }
 
-    @PostMapping("/eliminarVerMasTarde/{idPerfil}/{idPelicula}")
+    @PostMapping("/elimarVerMasTarde/{idPerfil}/{idPelicula}")
     public String eliminarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
         return perfilImplementacion.eliminarVerMasTarde(idPerfil, idPelicula);
     }

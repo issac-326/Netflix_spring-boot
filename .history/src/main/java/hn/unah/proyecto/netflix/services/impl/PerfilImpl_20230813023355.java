@@ -130,7 +130,7 @@ public class PerfilImpl implements PerfilService {
         Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
         perfil.get().getVerMasTarde().add(pelicula.get());
         perfilRepositorio.save(perfil.get());
-        return "se agrego la pelicula a la lista de ver mas tarde";
+        return "se agrego la pelicula a la lista de seguir viendo";
     }
 
     @Override
@@ -146,6 +146,6 @@ public class PerfilImpl implements PerfilService {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
         perfil.get().getVerMasTarde().remove(idPelicula);
         perfilRepositorio.save(perfil.get());
-        return "se elimino la pelicula a la lista de vermas tarde";
+        return "se elimino la pelicula a la lista de seguir viendo";
     }
 }
