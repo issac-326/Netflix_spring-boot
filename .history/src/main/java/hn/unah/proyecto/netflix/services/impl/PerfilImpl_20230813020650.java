@@ -120,7 +120,6 @@ public class PerfilImpl implements PerfilService {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
         Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPerfil);
         perfil.get().getSeguirViendo().add(pelicula.get());
-        perfilRepositorio.save(perfil.get());
         return "se agrego la pelicula a la lista de seguir viendo";
     }
 
@@ -129,7 +128,6 @@ public class PerfilImpl implements PerfilService {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
         Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPerfil);
         perfil.get().getVerMasTarde().add(pelicula.get());
-        perfilRepositorio.save(perfil.get());
         return "se agrego la pelicula a la lista de seguir viendo";
     }
 }

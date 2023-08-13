@@ -48,26 +48,14 @@ public class Perfil {
     // @OneToOne(mappedBy = "perfil")
     // private VerMastarde verMastarde;
     //// relacion seguir viendo
-
-    // lista de las peliculas para ver mas tarde
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    /*
-     * aqui creamos la tabla que guardara las relaciones, colocamos el nombre y
-     * posterior mete el nombre de cada columna
-     */
     @JoinTable(name = "vermastarde", joinColumns = @JoinColumn(name = "idperfil", referencedColumnName = "idperfil"), inverseJoinColumns = @JoinColumn(name = "idpeliculas", referencedColumnName = "idpeliculas"))
     private List<Pelicula> verMasTarde;
 
-    // lista de la peliculas para continuar viendo
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    /*
-     * aqui creamos la tabla que guardara las relaciones, colocamos el nombre y
-     * posterior mete el nombre de cada columna
-     */
     @JoinTable(name = "seguirviendo", joinColumns = @JoinColumn(name = "idperfil", referencedColumnName = "idperfil"), inverseJoinColumns = @JoinColumn(name = "idpeliculas", referencedColumnName = "idpeliculas"))
     private List<Pelicula> seguirViendo;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "visto")
     private List<Pelicula> peliculasVistas;
 

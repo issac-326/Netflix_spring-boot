@@ -26,8 +26,4 @@ public interface PerfilService {
 
     public List<Pelicula> verMasTarde(int idPerfil);
 
-    public String guardarSeguirViendo(int idPerfil, int idPelicula);
-
-    public String guardarVerMasTarde(int idPerfil, int idPelicula);
-
 }
