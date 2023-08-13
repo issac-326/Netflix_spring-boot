@@ -22,12 +22,5 @@ public interface PerfilService {
 
     public String eliminarPerfil(int idPerfil);
 
-    public List<Pelicula> seguirViendo(int idPerfil);
-
-    public List<Pelicula> verMasTarde(int idPerfil);
-
-    public String guardarSeguirViendo(int idPerfil, int idPelicula);
-
-    public String guardarVerMasTarde(int idPerfil, int idPelicula);
-
+    public List<Pelicula> seguirviendo(int idPerfil);
 }

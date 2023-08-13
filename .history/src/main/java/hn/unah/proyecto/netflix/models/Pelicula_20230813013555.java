@@ -55,13 +55,10 @@ public class Pelicula {
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "idvermastarde", referencedColumnName = "idvermastarde")
     // private VerMastarde verTarde;
-
-    // relacion con la lista de ver mas tarde
     @JsonIgnore
     @ManyToMany(mappedBy = "verMasTarde")
     private List<Perfil> perfilMasTarde;
 
-    // relacion con la lista de seguir viendo
     @JsonIgnore
     @ManyToMany(mappedBy = "seguirViendo")
     private List<Perfil> perfilSeguirViendo;

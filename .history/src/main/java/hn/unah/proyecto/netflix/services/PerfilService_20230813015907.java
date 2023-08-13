@@ -28,6 +28,4 @@ public interface PerfilService {
 
     public String guardarSeguirViendo(int idPerfil, int idPelicula);
 
-    public String guardarVerMasTarde(int idPerfil, int idPelicula);
-
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import hn.unah.proyecto.netflix.models.Pelicula;
 import hn.unah.proyecto.netflix.models.Perfil;
 import hn.unah.proyecto.netflix.models.Usuario;
-import hn.unah.proyecto.netflix.repositorys.PeliculaRepository;
 import hn.unah.proyecto.netflix.repositorys.PerfilRepository;
 import hn.unah.proyecto.netflix.repositorys.UsuarioRepository;
 import hn.unah.proyecto.netflix.services.PerfilService;
@@ -22,9 +21,6 @@ public class PerfilImpl implements PerfilService {
 
     @Autowired
     private PerfilRepository perfilRepositorio;
-
-    @Autowired
-    private PeliculaRepository peliculaRepositorio;
 
     // al ingresar a un perfil cambia el estado a activo
     @Override
@@ -113,23 +109,5 @@ public class PerfilImpl implements PerfilService {
     public List<Pelicula> verMasTarde(int idPerfil) {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
         return perfil.get().getVerMasTarde();
-    }
-
-    @Override
-    public String guardarSeguirViendo(int idPerfil, int idPelicula) {
-        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPerfil);
-        perfil.get().getSeguirViendo().add(pelicula.get());
-        perfilRepositorio.save(perfil.get());
-        return "se agrego la pelicula a la lista de seguir viendo";
-    }
-
-    @Override
-    public String guardarVerMasTarde(int idPerfil, int idPelicula) {
-        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPerfil);
-        perfil.get().getVerMasTarde().add(pelicula.get());
-        perfilRepositorio.save(perfil.get());
-        return "se agrego la pelicula a la lista de seguir viendo";
     }
 }

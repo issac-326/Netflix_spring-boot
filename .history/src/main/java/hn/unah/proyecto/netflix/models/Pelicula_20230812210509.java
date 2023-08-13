@@ -1,8 +1,5 @@
 package hn.unah.proyecto.netflix.models;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -51,23 +46,24 @@ public class Pelicula {
     @JoinColumn(name = "idcategorias", referencedColumnName = "idcategorias")
     private Categoria categoria;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idseguirviendo", referencedColumnName = "idseguirviendo")
+    private SeguirViendo seguirViendo;
+
     // @JsonIgnore
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "idvermastarde", referencedColumnName = "idvermastarde")
     // private VerMastarde verTarde;
 
-    // relacion con la lista de ver mas tarde
     @JsonIgnore
-    @ManyToMany(mappedBy = "verMasTarde")
-    private List<Perfil> perfilMasTarde;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idperfil", referencedColumnName = "idperfil")
+    private Perfil perfilTarde;
 
-    // relacion con la lista de seguir viendo
     @JsonIgnore
-    @ManyToMany(mappedBy = "seguirViendo")
-    private List<Perfil> perfilSeguirViendo;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "perfilpeliculasvistas", joinColumns = @JoinColumn(name = "idpeliculas", referencedColumnName = "idpeliculas"), inverseJoinColumns = @JoinColumn(name = "idperfil", referencedColumnName = "idperfil"))
-    private List<Perfil> visto;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idperfil", referencedColumnName = "idperfil")
+    private Perfil perfilViendo;
 
 }

@@ -64,12 +64,7 @@ public class PerfilController {
     }
 
     @PostMapping("/guardarSeguirViendo/{idPerfil}/{idPelicula}")
-    public String guardarSeguirViendo(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return perfilImplementacion.guardarSeguirViendo(idPerfil, idPelicula);
-    }
-
-    @PostMapping("/guardarVerMasTarde/{idPerfil}/{idPelicula}")
-    public String guardarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return perfilImplementacion.guardarVerMasTarde(idPerfil, idPelicula);
+    public String guardarSeguirViendo(@PathVariable int idPerfil, int idPelicula) {
+        return perfilImplementacion.guardarSeguirViendo(idPerfil);
     }
 }
