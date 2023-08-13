@@ -87,9 +87,9 @@ public class UsuarioImpl implements UsuarioService {
         factura.setDescripcion("factura");
         factura.setFechaEmision(fechaActual);
         factura.setMontoTotal(plan.get().getCostoMensual());
-        perfil.setEstado(false);
+/*ken         perfil.setEstado(false);
         perfil.setImagen("user1.png");
-        perfil.setNombre("user1");
+        perfil.setNombre("user1"); */
         // listaPerfiles.add(perfil);
         usuario.setCorreo(usuarioTarjeta.getCorreo());
         usuario.setContrasena(usuarioTarjeta.getContrasena());
@@ -126,7 +126,6 @@ public class UsuarioImpl implements UsuarioService {
 
         Optional<Usuario> nueUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
         return nueUsuario;
-
     }
 
     @Override
