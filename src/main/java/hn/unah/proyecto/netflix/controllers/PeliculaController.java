@@ -31,7 +31,7 @@ public class PeliculaController {
     }
 
     @PostMapping("/buscar/titulo")
-    public Optional<Pelicula> buscarPeliculas(String nombre) {
+    public Optional<Pelicula> buscarPeliculas(@PathVariable String nombre) {
         return peliculaImplementacion.buscarPeliculas(nombre);
     }
 }
