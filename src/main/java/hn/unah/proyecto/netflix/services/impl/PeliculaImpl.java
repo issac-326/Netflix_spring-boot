@@ -43,5 +43,13 @@ public class PeliculaImpl implements PeliculaService{
 
         return peliculas;
     }
+
+    @Override
+    public Optional<Pelicula> buscarPeliculas(String nombre) {
+        
+        Optional<Pelicula> pelicula = peliculaRepositorio.findByTitulo(nombre);
+
+        return pelicula;
+    }
     
 }
