@@ -46,8 +46,7 @@ public class Pelicula {
     private int numerolikes;
     private int numerodislikes;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "idcategorias", referencedColumnName = "idcategorias")
     private Categoria categoria;
 
