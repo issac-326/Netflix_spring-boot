@@ -15,11 +15,5 @@ public interface PeliculaService {
 
     public String guardarLike(int idPerfil, int idPelicula);
 
-    public String eliminarLike(int idPerfil, int idPelicula);
-
-    public int like(int idPelicula);
-
-    public int popularidad(int idPelicula);
-
-    public String peliculaVista(int idPerfil, int idPelicula);
+    public String elimarLike(int idPerfil, int idPelicula);
 }

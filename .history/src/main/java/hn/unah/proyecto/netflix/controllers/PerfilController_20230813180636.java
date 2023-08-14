@@ -73,12 +73,12 @@ public class PerfilController {
         return perfilImplementacion.guardarVerMasTarde(idPerfil, idPelicula);
     }
 
-    @GetMapping("/eliminarSeguirViendo/{idPerfil}/{idPelicula}")
+    @PostMapping("/eliminarSeguirViendo/{idPerfil}/{idPelicula}")
     public String eliminarSeguirViendo(@PathVariable int idPerfil, @PathVariable int idPelicula) {
         return perfilImplementacion.eliminarSeguirViendo(idPerfil, idPelicula);
     }
 
-    @GetMapping("/eliminarVerMasTarde/{idPerfil}/{idPelicula}")
+    @PostMapping("/eliminarVerMasTarde/{idPerfil}/{idPelicula}")
     public String eliminarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
         return perfilImplementacion.eliminarVerMasTarde(idPerfil, idPelicula);
     }

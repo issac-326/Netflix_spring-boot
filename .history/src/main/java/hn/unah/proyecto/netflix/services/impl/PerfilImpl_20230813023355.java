@@ -119,19 +119,6 @@ public class PerfilImpl implements PerfilService {
     public String guardarSeguirViendo(int idPerfil, int idPelicula) {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
         Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-        if (perfil.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro perfil";
-        }
-        if (pelicula.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro pelicula";
-        }
-
-        if (perfil.get().getSeguirViendo().contains(pelicula.get())) {
-            return "La película ya está en la lista de seguir viendo";
-        }
-
         perfil.get().getSeguirViendo().add(pelicula.get());
         perfilRepositorio.save(perfil.get());
         return "se agrego la pelicula a la lista de seguir viendo";
@@ -141,60 +128,24 @@ public class PerfilImpl implements PerfilService {
     public String guardarVerMasTarde(int idPerfil, int idPelicula) {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
         Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-
-        if (perfil.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro perfil";
-        }
-        if (pelicula.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro pelicula";
-        }
-        if (perfil.get().getVerMasTarde().contains(pelicula.get())) {
-            return "La película ya está en la lista de ver mas tarde";
-        }
         perfil.get().getVerMasTarde().add(pelicula.get());
         perfilRepositorio.save(perfil.get());
-        return "se agrego la pelicula a la lista de ver mas tarde";
+        return "se agrego la pelicula a la lista de seguir viendo";
     }
 
     @Override
     public String eliminarSeguirViendo(int idPerfil, int idPelicula) {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-        if (perfil.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro perfil";
-        }
-        if (pelicula.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro pelicula";
-        }
-        if (!perfil.get().getVerMasTarde().contains(pelicula.get())) {
-            return "La película ya está en la lista de ver mas tarde";
-        }
-        perfil.get().getSeguirViendo().remove(pelicula.get());
+        perfil.get().getSeguirViendo().remove(idPelicula);
         perfilRepositorio.save(perfil.get());
-        return "se elimin la pelicula a la lista de seguir viendo";
+        return "se eliminp la pelicula a la lista de seguir viendo";
     }
 
     @Override
     public String eliminarVerMasTarde(int idPerfil, int idPelicula) {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-        if (perfil.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro perfil";
-        }
-        if (pelicula.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro pelicula";
-        }
-        if (!perfil.get().getVerMasTarde().contains(pelicula.get())) {
-            return "La película ya está en la lista de ver mas tarde";
-        }
-        perfil.get().getVerMasTarde().remove(pelicula.get());
+        perfil.get().getVerMasTarde().remove(idPelicula);
         perfilRepositorio.save(perfil.get());
-        return "se elimino la pelicula a la lista de vermas tarde";
+        return "se elimino la pelicula a la lista de seguir viendo";
     }
 }

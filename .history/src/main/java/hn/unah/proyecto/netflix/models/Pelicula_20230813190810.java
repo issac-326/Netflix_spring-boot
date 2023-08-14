@@ -42,8 +42,12 @@ public class Pelicula {
 
     private String imagen;
     private int aniolanzamiento;
+    private int numerodevistas;
+    private int numerolikes;
+    private int numerodislikes;
 
-    @ManyToOne()
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idcategorias", referencedColumnName = "idcategorias")
     private Categoria categoria;
 

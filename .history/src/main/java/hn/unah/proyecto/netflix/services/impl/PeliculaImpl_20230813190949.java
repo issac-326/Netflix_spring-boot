@@ -70,12 +70,12 @@ public class PeliculaImpl implements PeliculaService {
             // no lo encontro xd
             return "No se encontro pelicula";
         }
-        if (pelicula.get().getLikes().contains(perfil.get())) {
-            return "Ya tiene tu like";
+        if (perfil.get().getVerMasTarde().contains(pelicula.get())) {
+            return "La película ya está en la lista de ver mas tarde";
         }
-        pelicula.get().getLikes().add(perfil.get());
-        peliculaRepositorio.save(pelicula.get());
-        return "se agrego un like";
+        perfil.get().getVerMasTarde().add(pelicula.get());
+        perfilRepositorio.save(perfil.get());
+        return "se agrego la pelicula a la lista de ver mas tarde";
     }
 
     @Override
@@ -90,44 +90,12 @@ public class PeliculaImpl implements PeliculaService {
             // no lo encontro xd
             return "No se encontro pelicula";
         }
-        if (!pelicula.get().getLikes().contains(perfil.get())) {
-            return "Like no encontrado";
+        if (!perfil.get().getVerMasTarde().contains(pelicula.get())) {
+            return "La película ya está en la lista de ver mas tarde";
         }
-        pelicula.get().getLikes().remove(perfil.get());
-        peliculaRepositorio.save(pelicula.get());
-        return "se elimino el like";
-    }
-
-    public int like(int idPelicula) {
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-        return pelicula.get().getLikes().size();
-    }
-
-    @Override
-    public String peliculaVista(int idPerfil, int idPelicula) {
-        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-
-        if (perfil.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro perfil";
-        }
-        if (pelicula.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro pelicula";
-        }
-        if (pelicula.get().getVisto().contains(perfil.get())) {
-            return "Ya vio la pelicula";
-        }
-        pelicula.get().getVisto().add(perfil.get());
-        peliculaRepositorio.save(pelicula.get());
-        return "un  perfil a visto la pelicula";
-    }
-
-    @Override
-    public int popularidad(int idPelicula) {
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-        return pelicula.get().getVisto().size();
+        perfil.get().getSeguirViendo().remove(pelicula.get());
+        perfilRepositorio.save(perfil.get());
+        return "se elimin la pelicula a la lista de seguir viendo";
     }
 
 }
