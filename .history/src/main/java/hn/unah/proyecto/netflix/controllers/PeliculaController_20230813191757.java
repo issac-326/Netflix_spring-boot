@@ -44,19 +44,4 @@ public class PeliculaController {
     public String eliminarLike(@PathVariable int idPerfil, @PathVariable int idPelicula) {
         return peliculaImplementacion.eliminarLike(idPerfil, idPelicula);
     }
-
-    @GetMapping("/Like/{idPelicula}")
-    public int like(@PathVariable int idPelicula) {
-        return peliculaImplementacion.like(idPelicula);
-    }
-
-    @PostMapping("/peliculavista/{idPerfil}/{idPelicula}")
-    public String peliculaVista(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return peliculaImplementacion.peliculaVista(idPerfil, idPelicula);
-    }
-
-    @GetMapping("/popularidad/{idPelicula}")
-    public int popularidad(@PathVariable int idPelicula) {
-        return peliculaImplementacion.popularidad(idPelicula);
-    }
 }

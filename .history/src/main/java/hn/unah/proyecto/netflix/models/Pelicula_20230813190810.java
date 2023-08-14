@@ -42,6 +42,9 @@ public class Pelicula {
 
     private String imagen;
     private int aniolanzamiento;
+    private int numerodevistas;
+    private int numerolikes;
+    private int numerodislikes;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

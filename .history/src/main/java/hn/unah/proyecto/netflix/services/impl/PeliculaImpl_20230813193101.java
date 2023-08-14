@@ -124,7 +124,6 @@ public class PeliculaImpl implements PeliculaService {
         return "un  perfil a visto la pelicula";
     }
 
-    @Override
     public int popularidad(int idPelicula) {
         Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
         return pelicula.get().getVisto().size();

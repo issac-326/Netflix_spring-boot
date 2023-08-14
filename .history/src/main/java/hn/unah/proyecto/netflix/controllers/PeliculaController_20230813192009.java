@@ -46,17 +46,7 @@ public class PeliculaController {
     }
 
     @GetMapping("/Like/{idPelicula}")
-    public int like(@PathVariable int idPelicula) {
+    public String like(@PathVariable int idPelicula) {
         return peliculaImplementacion.like(idPelicula);
-    }
-
-    @PostMapping("/peliculavista/{idPerfil}/{idPelicula}")
-    public String peliculaVista(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return peliculaImplementacion.peliculaVista(idPerfil, idPelicula);
-    }
-
-    @GetMapping("/popularidad/{idPelicula}")
-    public int popularidad(@PathVariable int idPelicula) {
-        return peliculaImplementacion.popularidad(idPelicula);
     }
 }
