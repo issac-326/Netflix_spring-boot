@@ -78,24 +78,19 @@ public class UsuarioImpl implements UsuarioService {
         Optional<Plan> plan = planRepositorio.findById(usuarioTarjeta.getIdPlan());
         Usuario usuario = new Usuario();
         Date fechaActual = new Date();
-        // crear el perfil predeterminado
-        // List<Perfil> listaPerfiles = new ArrayList<>();
-        Perfil perfil = new Perfil();
+
         // factura crear
         Factura factura = new Factura();
-
         factura.setDescripcion("factura");
         factura.setFechaEmision(fechaActual);
         factura.setMontoTotal(plan.get().getCostoMensual());
-/*ken         perfil.setEstado(false);
-        perfil.setImagen("user1.png");
-        perfil.setNombre("user1"); */
-        // listaPerfiles.add(perfil);
+
         usuario.setCorreo(usuarioTarjeta.getCorreo());
         usuario.setContrasena(usuarioTarjeta.getContrasena());
         usuario.setApellido(usuarioTarjeta.getApellido());
         usuario.setNombre(usuarioTarjeta.getNombre());
         usuario.setFechaRegistro(fechaActual);
+
         // si la tarjeta no existe si la podemos crear y si el correo no esta en uso
         if (tarjetaVerificar.isEmpty() && usuarioCorreo.isEmpty()) {
             if (usuarioTarjeta.getFechaVencimiento().after(usuario.getFechaRegistro())) {
@@ -113,8 +108,6 @@ public class UsuarioImpl implements UsuarioService {
                 Optional<Usuario> nuevoUsuario = usuarioRepositorio.findByCorreo(usuarioTarjeta.getCorreo());
                 factura.setUsuarioF(nuevoUsuario.get());
                 facturaRepositorio.save(factura);
-                perfil.setUsuarioP(nuevoUsuario.get());
-                perfilRepositorio.save(perfil);
             } else {
                 // si la tarjeta expiro
                 return Optional.empty();

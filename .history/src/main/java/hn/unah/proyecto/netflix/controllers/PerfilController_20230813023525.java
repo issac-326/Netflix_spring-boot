@@ -68,18 +68,18 @@ public class PerfilController {
         return perfilImplementacion.guardarSeguirViendo(idPerfil, idPelicula);
     }
 
-    @PostMapping("/guardarVerMasTarde/{idPerfil}/{idPelicula}")
-    public String guardarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return perfilImplementacion.guardarVerMasTarde(idPerfil, idPelicula);
+    @PostMapping("/eliminarVerMasTarde/{idPerfil}/{idPelicula}")
+    public String eliminarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
+        return perfilImplementacion.eliminarVerMasTarde(idPerfil, idPelicula);
     }
 
-    @GetMapping("/eliminarSeguirViendo/{idPerfil}/{idPelicula}")
+    @PostMapping("/eliminarSeguirViendo/{idPerfil}/{idPelicula}")
     public String eliminarSeguirViendo(@PathVariable int idPerfil, @PathVariable int idPelicula) {
         return perfilImplementacion.eliminarSeguirViendo(idPerfil, idPelicula);
     }
 
-    @GetMapping("/eliminarVerMasTarde/{idPerfil}/{idPelicula}")
-    public String eliminarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return perfilImplementacion.eliminarVerMasTarde(idPerfil, idPelicula);
+    @PostMapping("/guardarVerMasTarde/{idPerfil}/{idPelicula}")
+    public String guardarVerMasTarde(@PathVariable int idPerfil, @PathVariable int idPelicula) {
+        return perfilImplementacion.guardarVerMasTarde(idPerfil, idPelicula);
     }
 }

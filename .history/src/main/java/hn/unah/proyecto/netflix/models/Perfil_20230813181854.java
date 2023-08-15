@@ -71,10 +71,6 @@ public class Perfil {
     @ManyToMany(mappedBy = "visto")
     private List<Pelicula> peliculasVistas;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "likes")
-    private List<Pelicula> peliculaslikes;
-
     public boolean getEstado() {
         return estado;
     }

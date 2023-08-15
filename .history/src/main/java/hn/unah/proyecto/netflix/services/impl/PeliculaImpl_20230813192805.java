@@ -103,31 +103,4 @@ public class PeliculaImpl implements PeliculaService {
         return pelicula.get().getLikes().size();
     }
 
-    @Override
-    public String peliculaVista(int idPerfil, int idPelicula) {
-        Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-
-        if (perfil.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro perfil";
-        }
-        if (pelicula.isEmpty()) {
-            // no lo encontro xd
-            return "No se encontro pelicula";
-        }
-        if (pelicula.get().getVisto().contains(perfil.get())) {
-            return "Ya vio la pelicula";
-        }
-        pelicula.get().getVisto().add(perfil.get());
-        peliculaRepositorio.save(pelicula.get());
-        return "un  perfil a visto la pelicula";
-    }
-
-    @Override
-    public int popularidad(int idPelicula) {
-        Optional<Pelicula> pelicula = peliculaRepositorio.findById(idPelicula);
-        return pelicula.get().getVisto().size();
-    }
-
 }

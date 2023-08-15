@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ public class PeliculaController {
         return peliculaImplementacion.buscarPorCategoria(idCategoria);
     }
 
-    @GetMapping("/buscar/titulo/{nombre}")
+    @PostMapping("/buscar/titulo")
     public Optional<Pelicula> buscarPeliculas(@PathVariable String nombre) {
         return peliculaImplementacion.buscarPeliculas(nombre);
     }
@@ -45,17 +46,7 @@ public class PeliculaController {
     }
 
     @GetMapping("/Like/{idPelicula}")
-    public int like(@PathVariable int idPelicula) {
-        return peliculaImplementacion.like(idPelicula);
-    }
-
-    @PostMapping("/peliculavista/{idPerfil}/{idPelicula}")
-    public String peliculaVista(@PathVariable int idPerfil, @PathVariable int idPelicula) {
-        return peliculaImplementacion.peliculaVista(idPerfil, idPelicula);
-    }
-
-    @GetMapping("/popularidad/{idPelicula}")
-    public int popularidad(@PathVariable int idPelicula) {
-        return peliculaImplementacion.popularidad(idPelicula);
+    public String like(@PathVariable int idPelicula) {
+        return peliculaImplementacion.like(dPelicula);
     }
 }
