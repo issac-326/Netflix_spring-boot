@@ -22,4 +22,6 @@ public interface PeliculaService {
     public int popularidad(int idPelicula);
 
     public String peliculaVista(int idPerfil, int idPelicula);
+
+    public Pelicula peliculaReciente();
 }

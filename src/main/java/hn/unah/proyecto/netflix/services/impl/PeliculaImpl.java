@@ -130,4 +130,18 @@ public class PeliculaImpl implements PeliculaService {
         return pelicula.get().getVisto().size();
     }
 
+    @Override
+    public Pelicula peliculaReciente() {
+        
+        Iterable<Pelicula> peliculas = peliculaRepositorio.findAll();
+
+        Pelicula pelicula = new Pelicula();
+
+        for(Pelicula peli : peliculas){
+            pelicula = peli;
+        }
+
+        return pelicula;
+    }
+
 }

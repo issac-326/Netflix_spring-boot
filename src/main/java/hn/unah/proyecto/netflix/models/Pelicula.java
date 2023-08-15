@@ -1,5 +1,6 @@
 package hn.unah.proyecto.netflix.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,6 +49,10 @@ public class Pelicula {
     @ManyToOne()
     @JoinColumn(name = "idcategorias", referencedColumnName = "idcategorias")
     private Categoria categoria;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fechaagregada")
+    private Date fechaAgregada;
 
     // @JsonIgnore
     // @ManyToOne(fetch = FetchType.LAZY)

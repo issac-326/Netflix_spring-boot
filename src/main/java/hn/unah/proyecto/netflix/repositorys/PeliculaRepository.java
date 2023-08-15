@@ -14,4 +14,5 @@ public interface PeliculaRepository extends JpaRepository<Pelicula, Integer> {
     List<Pelicula> findByCategoria(Categoria categoria);
 
     Optional<Pelicula> findByTitulo(String titulo);
+
 }
