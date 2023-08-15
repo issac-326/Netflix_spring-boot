@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import hn.unah.proyecto.netflix.dto.UsuarioTarjeta;
 import hn.unah.proyecto.netflix.models.Factura;
-import hn.unah.proyecto.netflix.models.Perfil;
 import hn.unah.proyecto.netflix.models.Plan;
 import hn.unah.proyecto.netflix.models.Tarjeta;
 import hn.unah.proyecto.netflix.models.Usuario;
