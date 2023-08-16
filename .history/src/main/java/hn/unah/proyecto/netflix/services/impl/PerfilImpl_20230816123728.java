@@ -187,7 +187,9 @@ public class PerfilImpl implements PerfilService {
             // no lo encontro xd
             return "No se encontro pelicula";
         }
-
+        if (!perfil.get().getVerMasTarde().contains(pelicula.get())) {
+            return "La película ya está en la lista de ver mas tarde";
+        }
         perfil.get().getVerMasTarde().remove(pelicula.get());
         perfilRepositorio.save(perfil.get());
         return "se elimino la pelicula a la lista de vermas tarde";
