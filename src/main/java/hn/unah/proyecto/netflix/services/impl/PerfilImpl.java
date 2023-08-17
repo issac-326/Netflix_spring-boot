@@ -86,7 +86,9 @@ public class PerfilImpl implements PerfilService {
         Optional<Perfil> perfilActualizar = perfilRepositorio.findById(perfil.getIdPerfil());
 
         perfilActualizar.get().setContraseniaperfil(perfil.getContraseniaperfil());
-        perfilActualizar.get().setImagen(perfil.getImagen());
+        if(perfil.getImagen() != null){
+            perfilActualizar.get().setImagen(perfil.getImagen());
+        }
         perfilActualizar.get().setNombre(perfil.getNombre());
 
         return perfilRepositorio.save(perfilActualizar.get());
