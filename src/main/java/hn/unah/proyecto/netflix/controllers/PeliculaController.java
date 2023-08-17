@@ -64,4 +64,9 @@ public class PeliculaController {
     public Pelicula peliculaReciente(){
         return peliculaImplementacion.peliculaReciente();
     }
+
+    @GetMapping("/buscar/{id}")
+    public Optional<Pelicula> buscarPeliculain(@PathVariable int id){
+        return peliculaImplementacion.buscarPelicula(id);
+    }
 }

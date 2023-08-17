@@ -1,4 +1,4 @@
-package hn.unah.proyecto.netflix.swagger;
+/* package hn.unah.proyecto.netflix.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,4 +19,4 @@ public class SwaggerConfig {
   return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any())
     .build();
  }
-}
+} */
