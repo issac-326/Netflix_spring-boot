@@ -37,8 +37,6 @@ public class Usuario {
     private String nombre;
     private String apellido;
 
-    private int usuarioActivos = 0;
-
     @Temporal(TemporalType.DATE)
     @Column(name = "fecharegistro")
     private Date fechaRegistro;

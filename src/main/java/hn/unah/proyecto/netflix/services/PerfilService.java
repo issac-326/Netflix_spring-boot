@@ -14,7 +14,7 @@ public interface PerfilService {
 
     public List<Perfil> retornarPerfiles(int idUsuario);
 
-    public Perfil crearPerfil(Perfil perfil, int idUsuario);
+    public Optional<Perfil> crearPerfil(Perfil perfil, int idUsuario);
 
     public Optional<Perfil> obtenerPerfil(int id);
 
