@@ -58,6 +58,9 @@ public class UsuarioImpl implements UsuarioService {
 
     @Override
     public Optional<Usuario> registro(UsuarioTarjeta usuarioTarjeta) {
+        System.out.println(usuarioTarjeta);
+                System.out.println(1);
+
         /*
          * String correo;
          * String contrasena;
@@ -98,8 +101,8 @@ public class UsuarioImpl implements UsuarioService {
                 tarjeta.setNumeroTarjeta(usuarioTarjeta.getNumeroTarjeta());
                 tarjeta.setCvv(usuarioTarjeta.getCvv());
                 tarjeta.setFechaVencimiento(usuarioTarjeta.getFechaVencimiento());
-                tarjeta.setTipoTarjeta(usuarioTarjeta.getTipoTarjeta());
-                // se le asigna la tarjeta al usuario
+/*                 tarjeta.setTipoTarjeta(usuarioTarjeta.getTipoTarjeta());
+ */                // se le asigna la tarjeta al usuario
                 usuario.setTarjeta(tarjeta);
                 usuario.setPlan(plan.get());
                 usuarioRepositorio.save(usuario);
