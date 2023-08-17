@@ -39,7 +39,7 @@ public class PerfilController {
 
     // crea un perfil
     @PostMapping("/crear/{idUsuario}")
-    public Perfil crearPerfil(@RequestBody Perfil perfil, @PathVariable int idUsuario) {
+    public Optional<Perfil> crearPerfil(@RequestBody Perfil perfil, @PathVariable int idUsuario) {
         return perfilImplementacion.crearPerfil(perfil, idUsuario);
     }
 

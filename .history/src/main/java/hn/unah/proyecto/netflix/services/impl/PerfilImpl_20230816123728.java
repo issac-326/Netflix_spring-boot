@@ -54,25 +54,10 @@ public class PerfilImpl implements PerfilService {
     }
 
     @Override
-    public Optional<Perfil> crearPerfil(Perfil perfil, int idUsuario) {
+    public Perfil crearPerfil(Perfil perfil, int idUsuario) {
         Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
-        List<Perfil> perfiles = usuario.get().getPerfiles();
-        if(perfiles.size()<usuario.get().getPlan().getCantidadPerfiles()){
-            perfil.setUsuarioP(usuario.get());
-            perfilRepositorio.save(perfil);
-
-            Iterable<Perfil> Iperfil = perfilRepositorio.findAll();
-
-            int id = 0;
-
-            for (Perfil per : Iperfil) {
-                id = per.getIdPerfil();
-            }
-
-            Optional<Perfil> perfilOptional = perfilRepositorio.findById(id);
-            return perfilOptional;
-        }
-        return Optional.empty();
+        perfil.setUsuarioP(usuario.get());
+        return perfilRepositorio.save(perfil);
     }
 
     @Override
@@ -102,7 +87,7 @@ public class PerfilImpl implements PerfilService {
         return "se elimino perfil";
     }
 
-    /*@Override
+    @Override
     public Optional<Perfil> contadorActivo(int idPerfil, int idUsuario) {
 
         Optional<Perfil> perfilBuscar = perfilRepositorio.findById(idPerfil);
@@ -116,7 +101,7 @@ public class PerfilImpl implements PerfilService {
         usuario.setUsuarioActivos(usuario.getUsuarioActivos() + 1);
         usuarioRepositorio.save(usuario);
         return perfilBuscar;
-    }*/
+    }
 
     @Override
     public List<Pelicula> seguirViendo(int idPerfil) {
@@ -202,15 +187,11 @@ public class PerfilImpl implements PerfilService {
             // no lo encontro xd
             return "No se encontro pelicula";
         }
-
+        if (!perfil.get().getVerMasTarde().contains(pelicula.get())) {
+            return "La película ya está en la lista de ver mas tarde";
+        }
         perfil.get().getVerMasTarde().remove(pelicula.get());
         perfilRepositorio.save(perfil.get());
         return "se elimino la pelicula a la lista de vermas tarde";
-    }
-
-    @Override
-    public Optional<Perfil> contadorActivo(int idPerfil, int idUsuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contadorActivo'");
     }
 }
