@@ -69,10 +69,12 @@ public class Pelicula {
     @ManyToMany(mappedBy = "seguirViendo")
     private List<Perfil> perfilSeguirViendo;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "perfilpeliculasvistas", joinColumns = @JoinColumn(name = "idpeliculas", referencedColumnName = "idpeliculas"), inverseJoinColumns = @JoinColumn(name = "idperfil", referencedColumnName = "idperfil"))
     private List<Perfil> visto;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "likes", joinColumns = @JoinColumn(name = "idpeliculas", referencedColumnName = "idpeliculas"), inverseJoinColumns = @JoinColumn(name = "idperfil", referencedColumnName = "idperfil"))
     private List<Perfil> likes;

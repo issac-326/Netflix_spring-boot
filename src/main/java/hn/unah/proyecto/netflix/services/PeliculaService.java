@@ -24,4 +24,6 @@ public interface PeliculaService {
     public String peliculaVista(int idPerfil, int idPelicula);
 
     public Pelicula peliculaReciente();
+
+    public Optional<Pelicula> buscarPelicula(int idPelicula);
 }

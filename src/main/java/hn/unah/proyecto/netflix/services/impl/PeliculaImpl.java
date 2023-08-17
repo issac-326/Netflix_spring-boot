@@ -144,4 +144,8 @@ public class PeliculaImpl implements PeliculaService {
         return pelicula;
     }
 
+    @Override
+    public Optional<Pelicula> buscarPelicula(int idPelicula) {
+        return peliculaRepositorio.findById(idPelicula);
+    }
 }
