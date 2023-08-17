@@ -104,22 +104,6 @@ public class PerfilImpl implements PerfilService {
         return "se elimino perfil";
     }
 
-    /*@Override
-    public Optional<Perfil> contadorActivo(int idPerfil, int idUsuario) {
-
-        Optional<Perfil> perfilBuscar = perfilRepositorio.findById(idPerfil);
-        Optional<Usuario> usuarioBuscar = usuarioRepositorio.findById(idUsuario);
-        if (usuarioBuscar.get().getUsuarioActivos() >= usuarioBuscar.get().getPlan().getCantidadPerfiles()) {
-            return Optional.empty();
-        }
-
-        Usuario usuario = usuarioBuscar.get();
-
-        usuario.setUsuarioActivos(usuario.getUsuarioActivos() + 1);
-        usuarioRepositorio.save(usuario);
-        return perfilBuscar;
-    }*/
-
     @Override
     public List<Pelicula> seguirViendo(int idPerfil) {
         Optional<Perfil> perfil = perfilRepositorio.findById(idPerfil);

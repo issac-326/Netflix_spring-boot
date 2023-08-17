@@ -12,7 +12,6 @@ import hn.unah.proyecto.netflix.models.Plan;
 import hn.unah.proyecto.netflix.models.Tarjeta;
 import hn.unah.proyecto.netflix.models.Usuario;
 import hn.unah.proyecto.netflix.repositorys.FacturaRepository;
-import hn.unah.proyecto.netflix.repositorys.PerfilRepository;
 import hn.unah.proyecto.netflix.repositorys.PlanRepository;
 import hn.unah.proyecto.netflix.repositorys.TarjetaRepository;
 import hn.unah.proyecto.netflix.repositorys.UsuarioRepository;
@@ -32,9 +31,6 @@ public class UsuarioImpl implements UsuarioService {
 
     @Autowired
     private FacturaRepository facturaRepositorio;
-
-    @Autowired
-    private PerfilRepository perfilRepositorio;
 
     @Override
     public Optional<Usuario> login(Usuario usuario) {
